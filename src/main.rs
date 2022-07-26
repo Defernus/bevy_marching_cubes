@@ -1,26 +1,21 @@
 use bevy::prelude::*;
-use bevy_flycam::PlayerPlugin;
+use bevy_flycam::{MovementSettings, PlayerPlugin};
+use marching_cubes::plugins::chunks::ChunksPlugin;
 
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .add_plugin(PlayerPlugin)
+        .insert_resource(MovementSettings {
+            speed: 100.,
+            ..default()
+        })
+        .add_plugin(ChunksPlugin)
         .add_startup_system(setup)
         .run();
 }
 
-fn setup(
-    mut commands: Commands,
-    mut meshes: ResMut<Assets<Mesh>>,
-    mut materials: ResMut<Assets<StandardMaterial>>,
-) {
-    // add cube
-    commands.spawn_bundle(PbrBundle {
-        mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
-        material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-        transform: Transform::from_xyz(0.0, 0.5, 0.0),
-        ..default()
-    });
+fn setup(mut commands: Commands) {
     // add light
     commands.spawn_bundle(PointLightBundle {
         point_light: PointLight {

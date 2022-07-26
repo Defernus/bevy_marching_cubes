@@ -1870,7 +1870,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "martching-cubes"
+name = "marching-cubes"
 version = "0.1.0"
 dependencies = [
  "bevy",
