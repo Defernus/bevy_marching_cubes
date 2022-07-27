@@ -117,7 +117,7 @@ fn get_voxels_for_vertex(chunk: &Chunk, base_pos: Position) -> BlockOfVoxels {
 fn mix_positions(a: Vec3, b: Vec3, a_val: f32, b_val: f32) -> Vec3 {
     let transition = a_val / (a_val - b_val);
 
-    a * (1.0 - transition) + b * (transition)
+    a * (1.0 - transition) + b * transition
 }
 
 fn get_midpoint_data(voxels: &BlockOfVoxels, a: [usize; 3], b: [usize; 3]) -> Vec3 {
