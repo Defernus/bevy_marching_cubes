@@ -4,7 +4,7 @@ use super::{
     voxel::Voxel,
 };
 
-pub const CHUNK_REAL_SIZE: usize = 16;
+pub const CHUNK_REAL_SIZE: usize = 32;
 pub const CHUNK_VOXELS_SIZE: usize = CHUNK_REAL_SIZE + 1;
 pub const CHUNK_VOLUME: usize = CHUNK_VOXELS_SIZE * CHUNK_VOXELS_SIZE * CHUNK_VOXELS_SIZE;
 
