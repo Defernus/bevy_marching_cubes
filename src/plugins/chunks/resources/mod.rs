@@ -2,12 +2,12 @@ use self::{chunk::Chunk, pos::Position};
 use std::slice::IterMut;
 
 pub mod chunk;
+pub mod mesh;
 pub mod pos;
 pub mod voxel;
 
 pub struct ChunksHolder {
     pub chunks: Vec<Option<Chunk>>,
-    size: usize,
 }
 
 impl ChunksHolder {
@@ -23,7 +23,7 @@ impl ChunksHolder {
             })
             .collect();
 
-        Self { chunks, size }
+        Self { chunks }
     }
 
     fn get_pos_by_index(size: usize, index: usize) -> Position {

@@ -17,13 +17,13 @@ fn main() {
 
 fn setup(mut commands: Commands) {
     // add light
-    commands.spawn_bundle(PointLightBundle {
-        point_light: PointLight {
-            intensity: 1500.0,
-            shadows_enabled: true,
+    commands.spawn_bundle(DirectionalLightBundle {
+        directional_light: DirectionalLight {
+            color: Color::WHITE,
+            illuminance: 1000.,
             ..default()
         },
-        transform: Transform::from_xyz(4.0, 8.0, 4.0),
+        transform: Transform::from_rotation(Quat::from_axis_angle(Vec3::new(1., 0., 0.5), 1.7)),
         ..default()
     });
 }
