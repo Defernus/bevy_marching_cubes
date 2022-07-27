@@ -1,5 +1,5 @@
 use super::{
-    mesh::{append_vertices, Vertex},
+    mesh::{append_vertices::append_vertices, Vertex},
     pos::Position,
     voxel::Voxel,
 };
