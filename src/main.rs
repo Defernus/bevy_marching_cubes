@@ -20,7 +20,7 @@ fn setup(mut commands: Commands) {
     commands.spawn_bundle(DirectionalLightBundle {
         directional_light: DirectionalLight {
             color: Color::WHITE,
-            illuminance: 1000.,
+            illuminance: 10000.,
             ..default()
         },
         transform: Transform::from_rotation(Quat::from_axis_angle(Vec3::new(1., 0., 0.5), 1.7)),

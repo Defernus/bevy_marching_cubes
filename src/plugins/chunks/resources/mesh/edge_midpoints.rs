@@ -32,3 +32,5 @@ pub enum EdgeMidpointsIndices {
     SouthEast,
     SouthWest,
 }
+
+pub const CUBE_EDGES_COUNT: usize = 12;
