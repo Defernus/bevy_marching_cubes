@@ -1,4 +1,4 @@
-use crate::plugins::chunks::resources::{mesh::mesh_rom_vertices, ChunksHolder};
+use crate::plugins::chunks::resources::ChunksHolder;
 use bevy::prelude::*;
 
 pub fn redraw_chunk_sys(
@@ -10,8 +10,7 @@ pub fn redraw_chunk_sys(
     // iterate through all chunks and redraw if necessary
     chunks.iter_chunks_mut().for_each(|chunk| match chunk {
         Some(chunk) if chunk.is_need_update() => {
-            let vertices = chunk.generate_vertices();
-            let mesh = mesh_rom_vertices(vertices);
+            let mesh = chunk.generate_mesh();
 
             commands.spawn_bundle(PbrBundle {
                 mesh: meshes.add(mesh),

@@ -1,5 +1,7 @@
+use bevy::prelude::Mesh;
+
 use super::{
-    mesh::{append_vertices::append_vertices, Vertex},
+    mesh::{append_vertices::append_vertices, mesh_rom_vertices, Vertex},
     pos::Position,
     voxel::Voxel,
 };
@@ -70,7 +72,7 @@ impl Chunk {
         self.voxels[Self::get_index_by_pos(pos)]
     }
 
-    pub fn generate_vertices(&mut self) -> Vec<Vertex> {
+    pub fn generate_vertices(&self) -> Vec<Vertex> {
         let mut vertices: Vec<Vertex> = Vec::new();
         for x in 0..CHUNK_REAL_SIZE {
             for y in 0..CHUNK_REAL_SIZE {
@@ -89,5 +91,10 @@ impl Chunk {
         }
 
         vertices
+    }
+
+    pub fn generate_mesh(&self) -> Mesh {
+        let vertices = self.generate_vertices();
+        mesh_rom_vertices(vertices)
     }
 }
