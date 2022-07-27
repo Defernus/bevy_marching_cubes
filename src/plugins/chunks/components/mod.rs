@@ -1,11 +1,11 @@
-use super::resources::pos::ChunkPos;
+use super::resources::pos::Position;
 
 pub struct ChunkComponent {
-    pub pos: ChunkPos,
+    pub pos: Position,
 }
 
 impl ChunkComponent {
-    pub fn new(pos: ChunkPos) -> Self {
+    pub fn new(pos: Position) -> Self {
         Self { pos }
     }
 }

@@ -1,8 +1,9 @@
+use self::{chunk::Chunk, pos::Position};
 use std::slice::IterMut;
 
-use self::pos::ChunkPos;
-
+pub mod chunk;
 pub mod pos;
+pub mod voxel;
 
 pub struct ChunksHolder {
     pub chunks: Vec<Option<Chunk>>,
@@ -14,7 +15,9 @@ impl ChunksHolder {
         let volume = size * size * size;
         let chunks = (0..volume)
             .map(|index| {
-                let chunk_pos = Self::get_pos_by_cords(size, index);
+                let offset = size as i64 / 2;
+                let chunk_pos =
+                    Self::get_pos_by_index(size, index) - Position::new(offset, offset, offset);
                 let chunk = Chunk::new(chunk_pos);
                 Some(chunk)
             })
@@ -23,8 +26,8 @@ impl ChunksHolder {
         Self { chunks, size }
     }
 
-    fn get_pos_by_cords(size: usize, index: usize) -> ChunkPos {
-        ChunkPos::new(
+    fn get_pos_by_index(size: usize, index: usize) -> Position {
+        Position::new(
             (index % size) as i64,
             ((index / size) % size) as i64,
             (index / size / size) as i64,
@@ -33,33 +36,5 @@ impl ChunksHolder {
 
     pub fn iter_chunks_mut(&mut self) -> IterMut<Option<Chunk>> {
         self.chunks.iter_mut()
-    }
-}
-
-pub const CHUNK_SIZE: usize = 32;
-
-pub struct Chunk {
-    need_update: bool,
-    pos: ChunkPos,
-}
-
-impl Chunk {
-    pub fn new(pos: ChunkPos) -> Self {
-        Self {
-            need_update: true,
-            pos,
-        }
-    }
-
-    pub fn get_pos(&self) -> ChunkPos {
-        self.pos
-    }
-
-    pub fn is_need_update(&self) -> bool {
-        self.need_update
-    }
-
-    pub fn set_updated(&mut self) {
-        self.need_update = false;
     }
 }

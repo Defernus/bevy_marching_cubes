@@ -1,4 +1,4 @@
-use crate::plugins::chunks::resources::{ChunksHolder, CHUNK_SIZE};
+use crate::plugins::chunks::resources::{chunk::CHUNK_SIZE, ChunksHolder};
 use bevy::prelude::*;
 
 pub fn redraw_chunk_sys(
